@@ -7,6 +7,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class WebDriverTest {
 
@@ -22,13 +24,19 @@ public class WebDriverTest {
 		
 		driver.manage().window().maximize();
 		
-		driver.manage().timeouts().implicitlyWait(5000, TimeUnit.MILLISECONDS);
+		//driver.manage().timeouts().implicitlyWait(5000, TimeUnit.MILLISECONDS);
+		
+
 		
 		WebElement LoginLink = driver.findElement(By.linkText("Log in"));
 		
 		LoginLink.click();
 		
 		WebElement UserName = driver.findElement(By.name("user_login"));
+		
+		WebDriverWait wait = new WebDriverWait(driver,30);
+			
+		wait.until(ExpectedConditions.elementToBeClickable(UserName));
 		
 		UserName.sendKeys("anwi1017@mail.com");
 		
